@@ -44,7 +44,9 @@
     "yosay": "^2.0.2"
   },
   "scripts": {
-    "pretest": "eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pretest": "npm run lint:fix",
     "test": "jest"
   },
   "repository": "https://github.com/NDLA-H5P/h5p-contentype-generator",
