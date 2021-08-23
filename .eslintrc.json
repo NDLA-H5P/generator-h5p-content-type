@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier"
+  ],
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "plugins": ["@typescript-eslint", "jest"]
+}
