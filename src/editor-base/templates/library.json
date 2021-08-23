@@ -1,0 +1,20 @@
+{
+  "title": "<%= title %> Editor",
+  "machineName": "H5PEditor.<%= titlePascalCase %>",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "preloadedJs": [
+    {
+      "path": "src/<%= titleKebabCase %>.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.<%= titlePascalCase %>",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}
