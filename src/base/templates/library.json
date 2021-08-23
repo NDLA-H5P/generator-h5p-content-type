@@ -1,6 +1,6 @@
 {
   "title": "<%= title %>",
-  "machineName": "<%= titlePascalCase %>",
+  "machineName": "H5P.<%= titlePascalCase %>",
   "majorVersion": 1,
   "minorVersion": 0,
   "patchVersion": 0,
