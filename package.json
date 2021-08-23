@@ -44,6 +44,7 @@
     "yosay": "^2.0.2"
   },
   "scripts": {
+    "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pretest": "npm run lint:fix",
