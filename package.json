@@ -36,9 +36,6 @@
     "chalk": "^2.1.0",
     "yosay": "^2.0.2"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
