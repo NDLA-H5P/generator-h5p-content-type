@@ -24,8 +24,10 @@
     "@types/yeoman-generator": "^5.2.2",
     "@types/yeoman-test": "^4.0.2",
     "@types/yosay": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.6.0",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-prettier": "^3.1.1",
     "jest": "^27.0.6",
     "prettier": "^1.19.1",
@@ -40,6 +42,8 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "change-case": "^4.1.2",
+    "superb": "^4.0.0",
     "yeoman-generator": "^3.1.1",
     "yosay": "^2.0.2"
   },
