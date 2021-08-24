@@ -2,6 +2,8 @@ import chalk from "chalk";
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import yosay from "yosay";
+import { pascalCase, paramCase } from "change-case";
+import superb from "superb";
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -17,10 +19,10 @@ export default class extends Generator {
 
     const prompts: Question[] = [
       {
-        type: "confirm",
-        name: "someAnswer",
-        message: "Would you like to enable this option?",
-        default: true
+        type: "input",
+        name: "title",
+        message: "What is the content type's title?",
+        default: "Content Type",
       }
     ];
 
@@ -28,9 +30,19 @@ export default class extends Generator {
   }
 
   writing(): void {
-    this.fs.copy(
-      this.templatePath("dummyfile.txt"),
-      this.destinationPath("dummyfile.txt")
+    const title: string = this.promptAnswers.title;
+    const titlePascalCase = pascalCase(title);
+    const titleKebabCase = paramCase(title);
+
+    this.fs.copyTpl(
+      this.templatePath("**/*"),
+      this.destinationPath(""),
+      {
+        title,
+        titlePascalCase,
+        titleKebabCase,
+        superb: superb.random(),
+      },
     );
   }
 };
