@@ -12,7 +12,7 @@ export class H5PWrapper {
 
     this.wrapper = H5PWrapper.createWrapperElement();
 
-    ReactDOM.render(<App adjective="<%= superb =>" />, this.wrapper);
+    ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
   }
 
   attach([containerElement]: JQuery<HTMLElement>) {
