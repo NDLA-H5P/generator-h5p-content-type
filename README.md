@@ -1,14 +1,14 @@
-# generator-h-5-p-content-type [![NPM version][npm-image]][npm-url]
+# generator-h5p-content-type [![NPM version][npm-image]][npm-url]
 
 Yeoman generator for creating h5p content types according to the template: <https://github.com/NDLA-H5P/content-type-template>
 
 ## Installation
 
-First, install [Yeoman](https://yeoman.io) and generator-h-5-p-content-type using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](https://yeoman.io) and generator-h5p-content-type using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-h-5-p-content-type
+npm install -g generator-h5p-content-type
 ```
 
 Then generate your new project:
@@ -28,5 +28,5 @@ yo h-5-p-content-type
 
 MIT
 
-[npm-image]: https://badge.fury.io/js/generator-h-5-p-content-type.svg
-[npm-url]: https://npmjs.org/package/generator-h-5-p-content-type
+[npm-image]: https://badge.fury.io/js/generator-h5p-content-type.svg
+[npm-url]: https://npmjs.org/package/generator-h5p-content-type

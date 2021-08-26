@@ -10,7 +10,7 @@ export default class extends Generator {
     this.log(
       yosay(
         `Welcome to the legendary ${chalk.red(
-          "generator-h-5-p-content-type"
+          "generator-h5p-content-type"
         )} generator!`
       )
     );

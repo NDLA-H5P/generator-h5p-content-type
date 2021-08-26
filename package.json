@@ -1,5 +1,5 @@
 {
-  "name": "generator-h-5-p-content-type",
+  "name": "generator-h5p-content-type",
   "version": "0.0.0",
   "description": "",
   "homepage": "",
@@ -54,6 +54,6 @@
     "pretest": "npm run lint:fix",
     "test": "jest"
   },
-  "repository": "https://github.com/NDLA-H5P/h5p-contentype-generator",
+  "repository": "https://github.com/NDLA-H5P/generator-h5p-content-type",
   "license": "MIT"
 }
