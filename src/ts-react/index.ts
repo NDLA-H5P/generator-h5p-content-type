@@ -1,7 +1,5 @@
-import chalk from "chalk";
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
-import yosay from "yosay";
 import { pascalCase, paramCase } from "change-case";
 import superb from "superb";
 import { generatorName } from "../_utils/vars";
@@ -10,14 +8,6 @@ export default class extends Generator {
   private promptAnswers: Answers;
 
   async prompting(): Promise<void> {
-    this.log(
-      yosay(
-        `Welcome to the legendary ${chalk.red(
-          "generator-h-5-p-content-type"
-        )} generator!`
-      )
-    );
-
     const prompts: Question[] = [
       {
         type: "input",
