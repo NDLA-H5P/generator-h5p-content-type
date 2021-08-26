@@ -3,13 +3,11 @@ import * as ReactDOM from "react-dom";
 import App from "../App";
 import { H5P } from "./H5P.util";
 
-export class H5PWrapper {
+export class H5PWrapper extends H5P.EventDispatcher {
   private wrapper: HTMLElement;
 
   constructor(params: unknown, contentId: string, extras?: unknown) {
-    // Initialize event inheritance (see https://h5p.org/using-the-event-dispatcher)
-    H5P.EventDispatcher.call(this);
-
+    super();
     this.wrapper = H5PWrapper.createWrapperElement();
 
     ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
