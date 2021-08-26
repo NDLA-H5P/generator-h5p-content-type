@@ -52,5 +52,6 @@ export default class extends Generator {
 
     const library = JSON.parse(this.fs.read("library.json"));
     library.preloadedJs.path = "dist/build.js";
+    this.fs.writeJSON("library.json", library);
   }
 }
