@@ -11,7 +11,7 @@
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "keywords": [
     "yeoman-generator"
   ],
@@ -48,11 +48,15 @@
     "yosay": "^2.0.2"
   },
   "scripts": {
-    "build": "tsc",
+    "clean-output": "npx rimraf generators",
+    "build-typescript": "tsc",
+    "copy-templates": "npx -p cpy-cli cpy '**/*' '!*.ts' ../generators --cwd=src --parents",
+    "build": "npm run clean-output && npm run build-typescript && npm run copy-templates",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pretest": "npm run lint:fix",
-    "test": "jest"
+    "test": "jest",
+    "generate-local": "npm run build && npx rimraf temp && mkdir temp && cd temp && npx yo .."
   },
   "repository": "https://github.com/NDLA-H5P/h5p-contentype-generator",
   "license": "MIT"
