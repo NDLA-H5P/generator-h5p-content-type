@@ -4,6 +4,7 @@ import Generator from "yeoman-generator";
 import yosay from "yosay";
 import { pascalCase, paramCase } from "change-case";
 import superb from "superb";
+import { generatorName } from "../_utils/vars";
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -23,6 +24,12 @@ export default class extends Generator {
         name: "title",
         message: "What is the content type's title?",
         default: "Content Type",
+      },
+      {
+        type: "confirm",
+        name: "isEditor",
+        message: "Is this an editor content type?",
+        default: false,
       }
     ];
 
@@ -34,6 +41,14 @@ export default class extends Generator {
     const titlePascalCase = pascalCase(title);
     const titleKebabCase = paramCase(title);
 
+    const isEditor: boolean = this.promptAnswers.isEditor;
+
+    if (isEditor) {
+      this.composeWith(`${generatorName}:editor-base`);
+    } else {
+      this.composeWith(`${generatorName}:base`);
+    }
+
     this.fs.copyTpl(
       this.templatePath("**/*"),
       this.destinationPath(""),
@@ -44,5 +59,8 @@ export default class extends Generator {
         superb: superb.random(),
       },
     );
+
+    const library = JSON.parse(this.fs.read("library.json"));
+    library.preloadedJs.path = "dist/build.js";
   }
-};
+}
