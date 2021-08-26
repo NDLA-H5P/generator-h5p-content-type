@@ -107,5 +107,5 @@ dist
 generators
 
 # Lock files in templates
-templates/package-lock.json
-templates/yarn.lock
+**/templates/package-lock.json
+**/templates/yarn.lock
