@@ -43,7 +43,7 @@ export default class H5PContentTypeGenerator extends Generator {
 
     this.fs.copy(
       this.templatePath(".en.json"),
-      this.destinationPath(".en.json"),
+      this.destinationPath("languages/.en.json"),
     );
   }
 }
