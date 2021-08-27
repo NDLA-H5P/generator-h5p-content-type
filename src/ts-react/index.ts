@@ -48,7 +48,7 @@ export default class extends Generator {
     }
 
     this.fs.copyTpl(
-      this.templatePath("code/**/*"),
+      this.templatePath("root/**/*"),
       this.destinationPath(""),
       {
         title,
