@@ -37,7 +37,6 @@ export default class extends Generator {
     const { titlePascalCase, titleKebabCase } = createTitles(title);
 
     const isEditor: boolean = this.promptAnswers.isEditor;
-    const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
     this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
@@ -52,9 +51,12 @@ export default class extends Generator {
         superb: superb.random(),
       },
     );
+  }
 
+  end(): void {
+    const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
     if (shouldAddStorybook) {
-      const packageFile = JSON.parse(this.fs.read("package.json"));
+      const packageFile = JSON.parse(this.fs.read(this.destinationPath("package.json")));
 
       packageFile.scripts = {
         ...packageFile.scripts,
@@ -71,7 +73,7 @@ export default class extends Generator {
         "@storybook/manager-webpack5": "^6.3.7",
         "@storybook/react": "^6.3.7",
       };
-      this.fs.writeJSON("package.json", packageFile);
+      this.fs.writeJSON(this.destinationPath("package.json"), packageFile);
 
       this.fs.copy(
         this.templatePath("storybook/.storybook/**/*"),
@@ -84,8 +86,8 @@ export default class extends Generator {
       );
     }
 
-    const library = JSON.parse(this.fs.read("library.json"));
+    const library = JSON.parse(this.fs.read(this.destinationPath("library.json")));
     library.preloadedJs.path = "dist/build.js";
-    this.fs.writeJSON("library.json", library);
+    this.fs.writeJSON(this.destinationPath("library.json"), library);
   }
 }
