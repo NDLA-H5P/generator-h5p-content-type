@@ -77,7 +77,7 @@ export default class extends Generator {
 
       this.fs.copy(
         this.templatePath("storybook/.storybook/**/*"),
-        this.destinationPath(""),
+        this.destinationPath(".storybook"),
       );
 
       this.fs.copy(
