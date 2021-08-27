@@ -82,7 +82,7 @@ export default class extends Generator {
 
       this.fs.copy(
         this.templatePath("storybook/stories/**/*"),
-        this.destinationPath("src"),
+        this.destinationPath("src/stories"),
       );
     }
 
