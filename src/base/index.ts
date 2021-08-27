@@ -1,29 +1,20 @@
-import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import path from "path";
-import { pascalCase, paramCase } from "change-case";
 import superb from "superb";
+import { createTitles } from "../_utils/title.utils";
 
 export default class H5PContentTypeGenerator extends Generator {
-  private promptAnswers: Answers;
+  constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
+    super(args, options, features);
 
-  async prompting(): Promise<void> {
-    const prompts: Question[] = [
-      {
-        type: "input",
-        name: "title",
-        message: "What is the content type's title?",
-        default: "Content Type",
-      }
-    ];
-
-    this.promptAnswers = await this.prompt(prompts);
+    this.option("title", {
+      type: String,
+    });
   }
 
   writing(): void {
-    const title: string = this.promptAnswers.title;
-    const titlePascalCase = pascalCase(title);
-    const titleKebabCase = paramCase(title);
+    const title: string = this.options.title;
+    const { titlePascalCase, titleKebabCase } = createTitles(title);
 
     this.fs.copyTpl(
       this.templatePath("content-type.js"),
@@ -52,7 +43,7 @@ export default class H5PContentTypeGenerator extends Generator {
 
     this.fs.copy(
       this.templatePath(".en.json"),
-      this.destinationPath(".en.json"),
+      this.destinationPath("languages/.en.json"),
     );
   }
 }

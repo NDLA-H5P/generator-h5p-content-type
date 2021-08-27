@@ -25,12 +25,10 @@ export default class extends Generator {
   }
 
   writing(): void {
+    const title: string = this.promptAnswers.title;
     const isEditor: boolean = this.promptAnswers.isEditor;
 
-    if (isEditor) {
-      this.composeWith(`${generatorName}:editor-base`);
-    } else {
-      this.composeWith(`${generatorName}:base`);
-    }
+    const baseGeneratorName = isEditor ? "editor-base" : "base";
+    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
   }
 }

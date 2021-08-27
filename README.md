@@ -28,21 +28,23 @@ yo h5p-content-type
 
 There are two ways of running the project locally.
 
-### npm link
+First, you'll need to:
 
 1. Clone the project
 1. Open the directory
 1. Run `npm install` to fetch dependencies
-1. Run `npm link`
+1. Run `npm link`. You might have to do this as an administrator, i.e. by running `sudo npm link`. You only need to link the project once
+
+After that, you have the following choices:
+
+### Install local npm package
+
 1. Run `npm run build` to build the output files
 1. Make sure you have installed the `yo` command locally. If not, run `npm install --global yo`
 1. Now you can run `yo h5p-content-type` to run the generator locally
 
 ### generate-local
 
-1. Clone the project
-1. Open the directory
-1. Run `npm install` to fetch dependencies
 1. Run `npm run generate-local` to build and run the generator locally
 
 ## License
