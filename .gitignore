@@ -105,3 +105,6 @@ dist
 
 # Built Yeoman generator
 generators
+
+# Local build temp directory
+temp
