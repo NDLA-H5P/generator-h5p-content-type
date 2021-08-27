@@ -8,13 +8,13 @@ First, install [Yeoman](https://yeoman.io) and generator-h-5-p-content-type usin
 
 ```bash
 npm install -g yo
-npm install -g generator-h-5-p-content-type
+npm install -g generator-h5p-content-type
 ```
 
 Then generate your new project:
 
 ```bash
-yo h-5-p-content-type
+yo h5p-content-type
 ```
 
 ## Getting To Know Yeoman
@@ -23,6 +23,27 @@ yo h-5-p-content-type
 * Yeoman is a person with feelings and opinions, but is very easy to work with.
 * Yeoman can be too opinionated at times but is easily convinced not to be.
 * Feel free to [learn more about Yeoman](https://yeoman.io/).
+
+## Development
+
+There are two ways of running the project locally.
+
+### npm link
+
+1. Clone the project
+1. Open the directory
+1. Run `npm install` to fetch dependencies
+1. Run `npm link`
+1. Run `npm run build` to build the output files
+1. Make sure you have installed the `yo` command locally. If not, run `npm install --global yo`
+1. Now you can run `yo h5p-content-type` to run the generator locally
+
+### generate-local
+
+1. Clone the project
+1. Open the directory
+1. Run `npm install` to fetch dependencies
+1. Run `npm run generate-local` to build and run the generator locally
 
 ## License
 
