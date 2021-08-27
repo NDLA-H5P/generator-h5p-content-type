@@ -1,1 +1,1 @@
-export const generatorName = "h-5-p-content-type";
+export const generatorName = "h5p-content-type";
