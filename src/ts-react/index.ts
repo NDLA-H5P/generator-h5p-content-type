@@ -1,8 +1,8 @@
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
-import { pascalCase, paramCase } from "change-case";
 import superb from "superb";
 import { generatorName } from "../_utils/vars";
+import { createTitles } from "../_utils/title.utils";
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -34,18 +34,13 @@ export default class extends Generator {
 
   writing(): void {
     const title: string = this.promptAnswers.title;
-    const titlePascalCase = pascalCase(title);
-    const titleKebabCase = paramCase(title);
+    const { titlePascalCase, titleKebabCase } = createTitles(title);
 
     const isEditor: boolean = this.promptAnswers.isEditor;
-
     const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
 
-    if (isEditor) {
-      this.composeWith(`${generatorName}:editor-base`);
-    } else {
-      this.composeWith(`${generatorName}:base`);
-    }
+    const baseGeneratorName = isEditor ? "editor-base" : "base";
+    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
 
     this.fs.copyTpl(
       this.templatePath("root/**/*"),
