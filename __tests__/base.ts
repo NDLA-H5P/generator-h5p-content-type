@@ -5,7 +5,7 @@ import helpers from "yeoman-test";
 const generator = "base";
 const directory = path.join(__dirname, `../src/${generator}`);
 
-describe(`generator-h-5-p-content-type:${generator}`, () => {
+describe(`generator-h5p-content-type:${generator}`, () => {
   it("creates files", async () => {
     await helpers.run(directory);
 
