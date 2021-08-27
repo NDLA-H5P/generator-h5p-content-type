@@ -109,3 +109,6 @@ generators
 # Lock files in templates
 **/templates/package-lock.json
 **/templates/yarn.lock
+
+# Local build temp directory
+temp
