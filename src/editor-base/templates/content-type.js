@@ -34,7 +34,7 @@ H5PEditor.<%= titlePascalCase %> = class {
    *
    * @return {HTMLElement}
    */
-  createWrapper() {
+  createWrapper() {
     const wrapperElement = document.createElement('div');
     wrapperElement.innerText =
       `Hello ${this.name ? this.name : '<%= superb %> H5P developer'}! ✨`;
