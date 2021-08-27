@@ -112,4 +112,5 @@ generators
 **/templates/package-lock.json
 **/templates/yarn.lock
 
+# Local build temp directory
 temp
