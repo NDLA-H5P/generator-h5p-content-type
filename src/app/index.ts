@@ -1,26 +1,29 @@
-import chalk from "chalk";
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import yosay from "yosay";
+import { generatorName } from "../_utils/vars";
 
 export default class extends Generator {
-  private promptAnswers: Question<Answers>;
+  private promptAnswers: Answers;
 
   async prompting(): Promise<void> {
-    this.log(
-      yosay(
-        `Welcome to the legendary ${chalk.red(
-          "generator-h5p-content-type"
-        )} generator!`
-      )
-    );
+    this.log(yosay("Let's generate an H5P content type!"));
 
     const prompts: Question[] = [
       {
-        type: "confirm",
-        name: "someAnswer",
-        message: "Would you like to enable this option?",
-        default: true
+        type: "list",
+        name: "framework",
+        message: "Which JS framework do you want to use?",
+        default: "vanilla",
+        // @ts-expect-error `choices` is valid, but the type definition is not updated yet.
+        choices: [{
+          name: "Vanilla",
+          value: "vanilla",
+        },
+        {
+          name: "TypeScript and React",
+          value: "ts-react",
+        }],
       }
     ];
 
@@ -28,9 +31,7 @@ export default class extends Generator {
   }
 
   writing(): void {
-    this.fs.copy(
-      this.templatePath("dummyfile.txt"),
-      this.destinationPath("dummyfile.txt")
-    );
+    const framework: "vanilla" | "ts-react" = this.promptAnswers.framework;
+    this.composeWith(`${generatorName}:${framework}`);
   }
-};
+}
