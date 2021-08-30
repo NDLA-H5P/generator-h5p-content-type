@@ -8,7 +8,9 @@ const directory = path.join(__dirname, `../src/${generator}`);
 
 describe(`generator-${generatorName}:${generator}`, () => {
   it("creates files", async () => {
-    await helpers.run(directory);
+    const title = "My Content Type";
+    await helpers.run(directory)
+      .withOptions({ title });
 
     assert.file(["library.json"]);
     assert.noFile(["semantics.json"]);
@@ -20,7 +22,7 @@ describe(`generator-${generatorName}:${generator}`, () => {
 
     await helpers
       .run(directory)
-      .withPrompts({ title });
+      .withOptions({ title });
 
     assert.file([`src/${titleKebabCase}.js`]);
   });

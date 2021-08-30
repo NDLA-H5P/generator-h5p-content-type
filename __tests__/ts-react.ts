@@ -10,7 +10,7 @@ describe(`generator-${generatorName}:${generator}`, () => {
   beforeAll(() => {
     return helpers
       .run(directory)
-      .withPrompts({ someAnswer: true });
+      .withPrompts({ title: "Content Type" });
   });
 
   it("creates files", () => {
