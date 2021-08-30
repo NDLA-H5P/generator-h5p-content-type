@@ -7,13 +7,11 @@ const generator = "app";
 const directory = path.join(__dirname, `../src/${generator}`);
 
 describe(`generator-${generatorName}:${generator}`, () => {
-  beforeAll(() => {
-    return helpers
+  it("creates files", async () => {
+    await helpers
       .run(directory)
-      .withPrompts({ someAnswer: true });
-  });
+      .withPrompts({ title: "Content Type", isEditor: false, framework: "vanilla" });
 
-  it("creates files", () => {
-    assert.file(["dummyfile.txt"]);
+    assert.file(["src/content-type.js"]);
   });
 });
