@@ -51,6 +51,11 @@ export default class extends Generator {
         superb: superb.random(),
       },
     );
+
+    this.fs.copy(
+      this.templatePath("root/.gitignore"),
+      this.destinationPath(".gitignore"),
+    );
   }
 
   end(): void {
