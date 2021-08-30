@@ -1,6 +1,5 @@
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
-import { generatorName } from "../_utils/vars";
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -29,6 +28,6 @@ export default class extends Generator {
     const isEditor: boolean = this.promptAnswers.isEditor;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
-    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
+    this.composeWith(require.resolve(`../${baseGeneratorName}`), { title });
   }
 }

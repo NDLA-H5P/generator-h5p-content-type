@@ -1,7 +1,6 @@
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import superb from "superb";
-import { generatorName } from "../_utils/vars";
 import { createTitles } from "../_utils/title.utils";
 
 export default class extends Generator {
@@ -39,7 +38,7 @@ export default class extends Generator {
     const isEditor: boolean = this.promptAnswers.isEditor;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
-    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
+    this.composeWith(require.resolve(`../${baseGeneratorName}`), { title });
 
     this.fs.copyTpl(
       this.templatePath("root/**/*"),
