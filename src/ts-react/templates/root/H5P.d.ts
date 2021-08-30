@@ -2,7 +2,7 @@ import { H5PWrapper } from "./src/h5p/H5PWrapper";
 
 export interface H5PObject {
   EventDispatcher: typeof EventDispatcher;
-  <%= titlePascalCase %>: H5PWrapper;
+  <%= titlePascalCase %>: typeof H5PWrapper;
 }
 
 declare class EventDispatcher {
