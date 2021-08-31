@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
-    
+
     steps:
     - uses: actions/checkout@v2
 
@@ -27,6 +27,6 @@ jobs:
     - name: Lint
       run: npm run lint
     - name: Unit test
-      run: npm †est
+      run: npm test
     - name: Build
       run: npm run build
