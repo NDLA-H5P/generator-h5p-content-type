@@ -7,13 +7,17 @@ const generator = "ts-react";
 const directory = path.join(__dirname, `../src/${generator}`);
 
 describe(`generator-${generatorName}:${generator}`, () => {
-  beforeAll(() => {
-    return helpers
+  it("creates files", async () => {
+    await helpers
       .run(directory)
-      .withPrompts({ someAnswer: true });
-  });
+      .withOptions({
+        title: "Content Type",
+        isEditor: false,
+      })
+      .withPrompts({
+        shouldAddStorybook: false,
+      });
 
-  it("creates files", () => {
     // The files can be added all in the same
     // `assert.file([])` call, but this makes the
     // test fail only once, thus telling nothing
@@ -24,5 +28,6 @@ describe(`generator-${generatorName}:${generator}`, () => {
     assert.file(["./src/App.tsx"]);
     assert.file(["./src/index.tsx"]);
     assert.file(["./src/h5p/H5PWrapper.tsx"]);
+    assert.noFile(["./src/content-type.js"]);
   });
 });

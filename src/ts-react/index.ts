@@ -1,26 +1,25 @@
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import superb from "superb";
-import { generatorName } from "../_utils/vars";
 import { createTitles } from "../_utils/title.utils";
 
 export default class extends Generator {
   private promptAnswers: Answers;
 
+  constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
+    super(args, options, features);
+
+    this.option("title", {
+      type: String,
+    });
+
+    this.option("isEditor", {
+      type: Boolean,
+    });
+  }
+
   async prompting(): Promise<void> {
     const prompts: Question[] = [
-      {
-        type: "input",
-        name: "title",
-        message: "What is the content type's title?",
-        default: "Content Type",
-      },
-      {
-        type: "confirm",
-        name: "isEditor",
-        message: "Is this an editor content type?",
-        default: false,
-      },
       {
         type: "confirm",
         name: "shouldAddStorybook",
@@ -33,13 +32,13 @@ export default class extends Generator {
   }
 
   writing(): void {
-    const title: string = this.promptAnswers.title;
+    const title: string = this.options.title;
     const { titlePascalCase, titleKebabCase } = createTitles(title);
 
-    const isEditor: boolean = this.promptAnswers.isEditor;
+    const isEditor: boolean = this.options.isEditor;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
-    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
+    this.composeWith(require.resolve(`../${baseGeneratorName}`), { title });
 
     this.fs.copyTpl(
       this.templatePath("root/**/*"),
@@ -48,12 +47,21 @@ export default class extends Generator {
         title,
         titlePascalCase,
         titleKebabCase,
+        isEditor,
         superb: superb.random(),
       },
+    );
+
+    this.fs.copy(
+      this.templatePath("root/.gitignore"),
+      this.destinationPath(".gitignore"),
     );
   }
 
   end(): void {
+    const title: string = this.options.title;
+    const { titleKebabCase } = createTitles(title);
+
     const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
     if (shouldAddStorybook) {
       const packageFile = JSON.parse(this.fs.read(this.destinationPath("package.json")));
@@ -89,5 +97,7 @@ export default class extends Generator {
     const library = JSON.parse(this.fs.read(this.destinationPath("library.json")));
     library.preloadedJs.path = "dist/build.js";
     this.fs.writeJSON(this.destinationPath("library.json"), library);
+
+    this.fs.delete(this.destinationPath(`src/${titleKebabCase}.js`))
   }
 }
