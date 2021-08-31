@@ -43,6 +43,9 @@ export default class extends Generator {
 
   writing(): void {
     const framework: "vanilla" | "ts-react" = this.promptAnswers.framework;
-    this.composeWith(require.resolve(`../${framework}`));
+    this.composeWith(require.resolve(`../${framework}`), {
+      title: this.promptAnswers.title,
+      isEditor: this.promptAnswers.isEditor,
+    });
   }
 }
