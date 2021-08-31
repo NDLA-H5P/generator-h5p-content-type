@@ -10,7 +10,11 @@ describe(`generator-${generatorName}:${generator}`, () => {
   it("creates files", async () => {
     await helpers
       .run(directory)
-      .withPrompts({ title: "Content Type", isEditor: false, framework: "vanilla" });
+      .withPrompts({
+        title: "Content Type",
+        isEditor: false,
+        framework: "vanilla"
+      });
 
     assert.file(["src/content-type.js"]);
   });
