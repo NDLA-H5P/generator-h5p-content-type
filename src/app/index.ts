@@ -11,6 +11,18 @@ export default class extends Generator {
 
     const prompts: Question[] = [
       {
+        type: "input",
+        name: "title",
+        message: "What is the content type's title?",
+        default: "Content Type",
+      },
+      {
+        type: "confirm",
+        name: "isEditor",
+        message: "Is this an editor content type?",
+        default: false,
+      },
+      {
         type: "list",
         name: "framework",
         message: "Which JS framework do you want to use?",
@@ -24,7 +36,7 @@ export default class extends Generator {
           name: "TypeScript and React",
           value: "ts-react",
         }],
-      }
+      },
     ];
 
     this.promptAnswers = await this.prompt<Question>(prompts);
@@ -32,6 +44,9 @@ export default class extends Generator {
 
   writing(): void {
     const framework: "vanilla" | "ts-react" = this.promptAnswers.framework;
-    this.composeWith(`${generatorName}:${framework}`);
+    this.composeWith(`${generatorName}:${framework}`, {
+      title: this.promptAnswers.title,
+      isEditor: this.promptAnswers.isEditor,
+    });
   }
 }

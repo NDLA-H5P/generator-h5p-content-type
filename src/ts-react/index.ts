@@ -7,20 +7,20 @@ import { createTitles } from "../_utils/title.utils";
 export default class extends Generator {
   private promptAnswers: Answers;
 
+  constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
+    super(args, options, features);
+
+    this.option("title", {
+      type: String,
+    });
+
+    this.option("isEditor", {
+      type: Boolean,
+    });
+  }
+
   async prompting(): Promise<void> {
     const prompts: Question[] = [
-      {
-        type: "input",
-        name: "title",
-        message: "What is the content type's title?",
-        default: "Content Type",
-      },
-      {
-        type: "confirm",
-        name: "isEditor",
-        message: "Is this an editor content type?",
-        default: false,
-      },
       {
         type: "confirm",
         name: "shouldAddStorybook",
@@ -33,10 +33,10 @@ export default class extends Generator {
   }
 
   writing(): void {
-    const title: string = this.promptAnswers.title;
+    const title: string = this.options.title;
     const { titlePascalCase, titleKebabCase } = createTitles(title);
 
-    const isEditor: boolean = this.promptAnswers.isEditor;
+    const isEditor: boolean = this.options.isEditor;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
     this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
@@ -48,6 +48,7 @@ export default class extends Generator {
         title,
         titlePascalCase,
         titleKebabCase,
+        isEditor,
         superb: superb.random(),
       },
     );
