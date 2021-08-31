@@ -59,6 +59,9 @@ export default class extends Generator {
   }
 
   end(): void {
+    const title: string = this.promptAnswers.title;
+    const { titleKebabCase } = createTitles(title);
+
     const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
     if (shouldAddStorybook) {
       const packageFile = JSON.parse(this.fs.read(this.destinationPath("package.json")));
@@ -94,5 +97,7 @@ export default class extends Generator {
     const library = JSON.parse(this.fs.read(this.destinationPath("library.json")));
     library.preloadedJs.path = "dist/build.js";
     this.fs.writeJSON(this.destinationPath("library.json"), library);
+
+    this.fs.delete(this.destinationPath(`src/${titleKebabCase}.js`))
   }
 }
