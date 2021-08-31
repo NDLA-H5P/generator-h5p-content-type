@@ -59,7 +59,7 @@ export default class extends Generator {
   }
 
   end(): void {
-    const title: string = this.promptAnswers.title;
+    const title: string = this.options.title;
     const { titleKebabCase } = createTitles(title);
 
     const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
