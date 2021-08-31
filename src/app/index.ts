@@ -1,7 +1,6 @@
 import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import yosay from "yosay";
-import { generatorName } from "../_utils/vars";
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -44,7 +43,7 @@ export default class extends Generator {
 
   writing(): void {
     const framework: "vanilla" | "ts-react" = this.promptAnswers.framework;
-    this.composeWith(`${generatorName}:${framework}`, {
+    this.composeWith(require.resolve(`../${framework}`), {
       title: this.promptAnswers.title,
       isEditor: this.promptAnswers.isEditor,
     });

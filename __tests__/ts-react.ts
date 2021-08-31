@@ -10,9 +10,12 @@ describe(`generator-${generatorName}:${generator}`, () => {
   it("creates files", async () => {
     await helpers
       .run(directory)
-      .withPrompts({
+      .withOptions({
         title: "Content Type",
         isEditor: false,
+      })
+      .withPrompts({
+        shouldAddStorybook: false,
       });
 
     // The files can be added all in the same

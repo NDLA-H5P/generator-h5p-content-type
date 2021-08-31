@@ -1,5 +1,4 @@
 import Generator from "yeoman-generator";
-import { generatorName } from "../_utils/vars";
 
 export default class extends Generator {
   constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
@@ -19,6 +18,6 @@ export default class extends Generator {
     const isEditor: boolean = this.options.isEditor;
 
     const baseGeneratorName = isEditor ? "editor-base" : "base";
-    this.composeWith(`${generatorName}:${baseGeneratorName}`, { title });
+    this.composeWith(require.resolve(`../${baseGeneratorName}`), { title });
   }
 }
