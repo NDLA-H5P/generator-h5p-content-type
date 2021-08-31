@@ -13,6 +13,9 @@ describe(`generator-${generatorName}:${generator}`, () => {
       .withOptions({
         title: "Content Type",
         isEditor: false,
+      })
+      .withPrompts({
+        shouldAddStorybook: false,
       });
 
     // The files can be added all in the same
