@@ -1,23 +1,35 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { IH5PWrapper } from "../../H5P";
+import { IH5PEditorWrapper } from "../../H5P";
 import App from "../App";
 import { H5P } from "./H5P.util";
 
-export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
+export class H5PWrapper extends H5P.EventDispatcher
+  implements IH5PEditorWrapper {
   private wrapper: HTMLElement;
 
-  constructor(params: unknown, contentId: string, extras?: unknown) {
+  constructor(
+    parent: JQuery<HTMLElement>,
+    field: unknown,
+    params: unknown,
+    setValue: (value: unknown) => void
+  ) {
     super();
     this.wrapper = H5PWrapper.createWrapperElement();
 
     ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
   }
 
-  attach([containerElement]: JQuery<HTMLElement>) {
+  appendTo([containerElement]: JQuery<HTMLElement>): void {
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-<%= titleKebabCase %>");
   }
+
+  validate(): boolean {
+    return true;
+  }
+
+  remove(): void {}
 
   private static createWrapperElement(): HTMLDivElement {
     return document.createElement("div");
