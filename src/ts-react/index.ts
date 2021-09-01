@@ -22,7 +22,7 @@ export default class extends Generator {
     const prompts: Question[] = [
       {
         type: "confirm",
-        name: "shouldAddStorybook",
+        name: "useStorybook",
         message: "Do you want Storybook to be set up?",
         default: true,
       },
@@ -48,41 +48,28 @@ export default class extends Generator {
         titlePascalCase,
         titleKebabCase,
         isEditor,
+        useStorybook: this.promptAnswers.useStorybook,
+      },
+      null,
+      {
+        globOptions: {
+          ignore: ["**/H5PWrapper.tsx", "**/H5PEditorWrapper.tsx"],
+          dot: true,
+        },
+      }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath(`root/src/h5p/${isEditor ? "H5PEditorWrapper" : "H5PWrapper"}.tsx`),
+      this.destinationPath("src/h5p/H5PWrapper.tsx"),
+      {
+        titleKebabCase,
         superb: superb.random(),
       },
     );
 
-    this.fs.copy(
-      this.templatePath("root/.gitignore"),
-      this.destinationPath(".gitignore"),
-    );
-  }
-
-  end(): void {
-    const title: string = this.options.title;
-    const { titleKebabCase } = createTitles(title);
-
-    const shouldAddStorybook: boolean = this.promptAnswers.shouldAddStorybook;
-    if (shouldAddStorybook) {
-      const packageFile = JSON.parse(this.fs.read(this.destinationPath("package.json")));
-
-      packageFile.scripts = {
-        ...packageFile.scripts,
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
-      };
-
-      packageFile.devDependencies = {
-        ...packageFile.devDependencies,
-        "@storybook/addon-actions": "^6.3.7",
-        "@storybook/addon-essentials": "^6.3.7",
-        "@storybook/addon-links": "^6.3.7",
-        "@storybook/builder-webpack5": "^6.3.7",
-        "@storybook/manager-webpack5": "^6.3.7",
-        "@storybook/react": "^6.3.7",
-      };
-      this.fs.writeJSON(this.destinationPath("package.json"), packageFile);
-
+    const useStorybook: boolean = this.promptAnswers.useStorybook;
+    if (useStorybook) {
       this.fs.copy(
         this.templatePath("storybook/.storybook/**/*"),
         this.destinationPath(".storybook"),
@@ -93,11 +80,17 @@ export default class extends Generator {
         this.destinationPath("src/stories"),
       );
     }
+  }
+
+  end(): void {
+    const title: string = this.options.title;
+    const { titleKebabCase } = createTitles(title);
 
     const library = JSON.parse(this.fs.read(this.destinationPath("library.json")));
     library.preloadedJs.path = "dist/build.js";
+    this.fs.delete(this.destinationPath("library.json"));
     this.fs.writeJSON(this.destinationPath("library.json"), library);
 
-    this.fs.delete(this.destinationPath(`src/${titleKebabCase}.js`))
+    this.fs.delete(this.destinationPath(`src/${titleKebabCase}.js`));
   }
 }
