@@ -9,5 +9,12 @@
     {
       "path": "src/<%= titleKebabCase %>.js"
     }
+  ],
+  "preloadedDependencies": [
+    <% if (hasEditor) { %>{
+      "machineName": "H5PEditor.<%= titlePascalCase %>",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }<% } %>
   ]
 }

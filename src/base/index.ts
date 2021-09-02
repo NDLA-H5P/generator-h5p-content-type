@@ -1,15 +1,30 @@
-import Generator from "yeoman-generator";
+import Generator, { Answers, Question } from "yeoman-generator";
 import path from "path";
 import superb from "superb";
 import { createTitles } from "../_utils/title.utils";
 
 export default class H5PContentTypeGenerator extends Generator {
+  private promptAnswers: Answers;
+
   constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
     super(args, options, features);
 
     this.option("title", {
       type: String,
     });
+  }
+
+  async prompting(): Promise<void> {
+    const prompts: Question[] = [
+      {
+        type: "confirm",
+        name: "hasEditor",
+        message: "Does or will this content type have an editor?",
+        default: true,
+      },
+    ];
+
+    this.promptAnswers = await this.prompt<Question>(prompts);
   }
 
   writing(): void {
@@ -33,6 +48,7 @@ export default class H5PContentTypeGenerator extends Generator {
         title,
         titleKebabCase,
         titlePascalCase,
+        hasEditor: this.promptAnswers.hasEditor,
       }
     );
 
