@@ -15,7 +15,7 @@ describe(`generator-${generatorName}:${generator}`, () => {
         isEditor: false,
       })
       .withPrompts({
-        shouldAddStorybook: false,
+        useStorybook: false,
       });
 
     // The files can be added all in the same
