@@ -9,12 +9,5 @@
     {
       "path": "src/<%= titleKebabCase %>.js"
     }
-  ],
-  "preloadedDependencies": [
-    {
-      "machineName": "H5P.<%= titlePascalCase %>",
-      "majorVersion": 1,
-      "minorVersion": 0
-    }
   ]
 }
