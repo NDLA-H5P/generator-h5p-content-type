@@ -1,8 +1,15 @@
-import { pascalCase, paramCase } from "change-case";
+import { pascalCase, paramCase, camelCase } from "change-case";
 
-export function createTitles(title: string): { titlePascalCase: string, titleKebabCase: string; } {
+export function createTitles(
+  title: string
+): {
+  titlePascalCase: string;
+  titleKebabCase: string;
+  titleCamelCase: string;
+} {
   return {
     titlePascalCase: pascalCase(title),
-    titleKebabCase: paramCase(title)
+    titleKebabCase: paramCase(title),
+    titleCamelCase: camelCase(title)
   };
 }
