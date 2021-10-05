@@ -6,7 +6,8 @@ const config: Config.InitialOptions = {
     ".(js|jsx)": "babel-jest",
     ".(ts|tsx)": "ts-jest"
   },
-  testPathIgnorePatterns: ["generators/", "templates/"]
+  testPathIgnorePatterns: ["generators/", "templates/"],
+  modulePathIgnorePatterns: ["generators/", "templates/"]
 };
 
 export default config;
