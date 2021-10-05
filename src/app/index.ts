@@ -54,12 +54,4 @@ export default class extends Generator {
       "skip-install": true,
     });
   }
-
-  install(): void {
-    this.log("install in app");
-  }
-
-  npmInstall():void {
-    this.log("npm install in app")
-  }
 }
