@@ -5,6 +5,11 @@ import yosay from "yosay";
 export default class extends Generator {
   private promptAnswers: Answers;
 
+  constructor(args, options, features){
+    options['skip-install'] = true;
+    super(args, options, {customInstallTask: false});
+  }
+
   async prompting(): Promise<void> {
     this.log(yosay("Let's generate an H5P content type!"));
 
@@ -46,6 +51,7 @@ export default class extends Generator {
     this.composeWith(require.resolve(`../${framework}`), {
       title: this.promptAnswers.title,
       isEditor: this.promptAnswers.isEditor,
+      "skip-install": true,
     });
   }
 }
