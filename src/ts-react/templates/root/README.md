@@ -1,4 +1,4 @@
-# h5p-topic-map
+# <%= titleKebabCase %>
 
 Empty project.
 
