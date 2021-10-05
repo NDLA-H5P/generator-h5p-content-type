@@ -33,7 +33,7 @@ export default class extends Generator {
 
   writing(): void {
     const title: string = this.options.title;
-    const { titlePascalCase, titleKebabCase } = createTitles(title);
+    const { titlePascalCase, titleKebabCase, titleCamelCase } = createTitles(title);
 
     const isEditor: boolean = this.options.isEditor;
 
@@ -47,6 +47,7 @@ export default class extends Generator {
         title,
         titlePascalCase,
         titleKebabCase,
+        titleCamelCase,
         isEditor,
         useStorybook: this.promptAnswers.useStorybook,
       },
