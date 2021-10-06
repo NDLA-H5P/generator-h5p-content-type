@@ -10,7 +10,7 @@
     "clean": "rm dist/bundle.js",
     "build:dev": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "start": "webpack serve --hot --mode=development",,
+    "start": "webpack serve --hot --mode=development",
     "format:check": "prettier . --check",
     "format:fix": "prettier . --write",
     "eslint:check": "eslint .",
