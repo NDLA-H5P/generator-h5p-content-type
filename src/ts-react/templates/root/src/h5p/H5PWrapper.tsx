@@ -14,7 +14,7 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWrapper {
     ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
   }
 
-  attach([containerElement]: JQuery<HTMLElement>) {
+  attach([containerElement]: JQuery<HTMLElement>): void {
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-<%= titleKebabCase %>");
   }
