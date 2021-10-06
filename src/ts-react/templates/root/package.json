@@ -9,13 +9,18 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production",
-    "start": "webpack serve --hot --mode=development",
+    "build": "webpack --mode=production",
+    "start": "webpack serve --hot --mode=development",,
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --write",
+    "eslint:check": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "lint": "npm run format:check && npm run eslint:check",
+    "lint:fix": "npm run format:fix && npm run eslint:fix",
     <% if (useStorybook) { %>
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     <% } %>
-    "test": "jest"
   },
   "dependencies": {
     "react": "^17.0.2",
