@@ -4,7 +4,11 @@ import superb from "superb";
 import { createTitles } from "../_utils/title.utils";
 
 export default class H5PEditorContentTypeGenerator extends Generator {
-  constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
+  constructor(
+    args: string | string[],
+    options: Generator.GeneratorOptions,
+    features?: Generator.GeneratorFeatures,
+  ) {
     super(args, options, features);
 
     this.option("title", {
@@ -23,7 +27,7 @@ export default class H5PEditorContentTypeGenerator extends Generator {
         titlePascalCase,
         titleKebabCase,
         superb: superb.random(),
-      }
+      },
     );
 
     this.fs.copyTpl(
@@ -33,7 +37,12 @@ export default class H5PEditorContentTypeGenerator extends Generator {
         title,
         titlePascalCase,
         titleKebabCase,
-      }
+      },
+    );
+
+    this.fs.copy(
+      this.templatePath("en.json"),
+      this.destinationPath(path.join("language", "en.json")),
     );
   }
 }
