@@ -24,7 +24,7 @@ describe(`generator-${generatorName}:${generator}`, () => {
     // about what files are missing.
 
     assert.file(["package.json"]);
-    assert.file(["webpack.config.js"]);
+    assert.file(["vite.config.js"]);
     assert.file(["./src/App.tsx"]);
     assert.file(["./src/index.tsx"]);
     assert.file(["./src/h5p/H5PWrapper.tsx"]);
