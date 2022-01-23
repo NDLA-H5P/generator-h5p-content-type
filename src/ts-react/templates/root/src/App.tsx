@@ -1,5 +1,4 @@
 import * as React from "react";
-import { hot } from "react-hot-loader/root";
 
 export type AppProps = {
   adjective: string;
@@ -13,4 +12,4 @@ const App: React.FC<AppProps> = ({ adjective }) => {
   );
 }
 
-export default hot(App);
+export default App;
