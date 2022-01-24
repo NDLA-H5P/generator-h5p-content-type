@@ -20,7 +20,15 @@ export class H5PWrapper extends H5P.EventDispatcher
     ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
   }
 
-  appendTo([containerElement]: JQuery<HTMLElement>): void {
+  appendTo(container: JQuery<HTMLElement>): void {
+    const containerElement = $container.get(0);
+    if (!containerElement) {
+      console.error(
+        "Found no containing element to attach `h5p-<%= titleKebabCase %>` to.",
+      );
+      return;
+    }
+
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-<%= titleKebabCase %>");
   }

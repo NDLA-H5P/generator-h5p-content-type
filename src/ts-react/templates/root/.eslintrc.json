@@ -48,7 +48,7 @@
         "devDependencies": [
           "**/*.test.*",
           "**/*.stories.*",
-          "webpack.config.js"
+          "vite.config.ts"
         ]
       }
     ],
