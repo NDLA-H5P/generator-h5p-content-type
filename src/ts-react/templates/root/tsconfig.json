@@ -12,7 +12,8 @@
     "jsx": "react",
     "downlevelIteration": true,
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
   "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
 }
