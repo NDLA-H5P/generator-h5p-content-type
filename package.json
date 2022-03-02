@@ -25,7 +25,7 @@
     "@types/yosay": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
-    "cpy-cli": "^3.1.1",
+    "cpy-cli": "^4.0.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-jest": "^26.1.1",
