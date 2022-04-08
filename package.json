@@ -56,7 +56,7 @@
   "scripts": {
     "clean-output": "npx rimraf generators",
     "build-typescript": "tsc",
-    "copy-templates": "cpy '**/*' '!*.ts' ../generators --cwd=src --parents --dot",
+    "copy-templates": "cpy . '!**/*.ts' ../generators/. --dot --cwd=src",
     "build": "npm run clean-output && npm run build-typescript && npm run copy-templates",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
