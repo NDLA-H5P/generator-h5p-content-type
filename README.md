@@ -31,6 +31,7 @@ To run the project locally, follow these steps:
 1. Clone the project
 1. Open the directory
 1. Run `npm install` to fetch dependencies
+1. Run `npm run build` to build the project
 1. Run `npm link`. You might have to do this as an administrator, i.e. by running `sudo npm link`. You only need to link the project once
 1. Run `npm run generate-local` to build and run the generator locally
 
