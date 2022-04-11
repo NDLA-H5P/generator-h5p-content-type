@@ -3,4 +3,4 @@ import { H5PWrapper } from "./h5p/H5PWrapper";
 import "./styles.css";
 import "./styles.scss";
 
-H5P<% if (isEditor) { %>Editor<% } %>.<%= titlePascalCase %> = H5PWrapper;
+(H5P<% if (isEditor) { %>Editor<% } %> as any)<% if (isEditor) { %>.Editor<% } %>.<%= titlePascalCase %> = H5PWrapper;
