@@ -30,15 +30,15 @@ export default class extends Generator {
         type: "list",
         name: "framework",
         message: "Which JS framework do you want to use?",
-        default: "vanilla",
+        default: "ts-react",
         // @ts-expect-error `choices` is valid, but the type definition is not updated yet.
         choices: [{
-          name: "Vanilla",
-          value: "vanilla",
-        },
-        {
           name: "TypeScript and React",
           value: "ts-react",
+        },
+        {
+          name: "Vanilla",
+          value: "vanilla",
         }],
       },
     ];
