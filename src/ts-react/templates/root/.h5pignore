@@ -1,0 +1,9 @@
+node_modules
+src
+.babelrc
+.gitignore
+.h5pignore
+package.json
+package-lock.json
+README.md
+webpack.config.js
