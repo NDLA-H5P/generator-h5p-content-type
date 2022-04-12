@@ -1,11 +1,10 @@
 import * as React from "react";
+import type { IH5PWidget } from "h5p-types";
 import * as ReactDOM from "react-dom";
-import { IH5PEditorWrapper } from "../../H5P";
 import App from "../App";
 import { H5P } from "./H5P.util";
 
-export class H5PWrapper extends H5P.EventDispatcher
-  implements IH5PEditorWrapper {
+export class H5PWrapper extends H5P.EventDispatcher implements IH5PWidget {
   private wrapper: HTMLElement;
 
   constructor(
@@ -20,7 +19,7 @@ export class H5PWrapper extends H5P.EventDispatcher
     ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
   }
 
-  appendTo(container: JQuery<HTMLElement>): void {
+  appendTo($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
       console.error(

@@ -6,7 +6,7 @@ export default class extends Generator {
   private promptAnswers: Answers;
 
   constructor(args, options, features){
-    options['skip-install'] = true;
+    options['skip-install'] = false;
     super(args, options, {customInstallTask: false});
   }
 
@@ -51,7 +51,7 @@ export default class extends Generator {
     this.composeWith(require.resolve(`../${framework}`), {
       title: this.promptAnswers.title,
       isEditor: this.promptAnswers.isEditor,
-      "skip-install": true,
+      "skip-install": this.options['skip-install'],
     });
   }
 }

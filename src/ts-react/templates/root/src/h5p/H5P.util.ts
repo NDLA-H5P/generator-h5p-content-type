@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { H5PObject<% if (isEditor) { %>, H5PEditorObject <% } %> } from "../../H5P";
+import { H5PObject<% if (isEditor) { %>, H5PEditorObject <% } %> } from "h5p-types";
 <% if (isEditor) { %>import type { libraryStrings } from "../../language/en.json";<% } %>
 
 export const H5P: H5PObject = (window as any).H5P ?? {};

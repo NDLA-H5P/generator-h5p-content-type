@@ -2,6 +2,9 @@ import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import superb from "superb";
 import { createTitles } from "../_utils/title.utils";
+import fs from 'fs'
+import shelljs from "shelljs";
+
 
 export default class extends Generator {
   private promptAnswers: Answers;
@@ -92,6 +95,13 @@ export default class extends Generator {
     this.fs.delete(this.destinationPath("library.json"));
     this.fs.writeJSON(this.destinationPath("library.json"), library);
 
-    this.fs.delete(this.destinationPath(`src/${titleKebabCase}.js`));
+    fs.unlinkSync(this.destinationPath(`src/${titleKebabCase}.js`))
+
+    if (this.options['skip-install']) {
+      this.log(`To install your dependencies manually, run: "npm install"`);
+    } else {
+      this.log("installing dependencies");
+      shelljs.exec('npm install');
+    }
   }
 }

@@ -13,7 +13,8 @@
     "downlevelIteration": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*", "H5P.d.ts", "typings.d.ts"]
+  "include": ["./src/**/*", "typings.d.ts"]
 }
