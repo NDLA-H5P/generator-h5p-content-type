@@ -16,8 +16,8 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "@babel/preset-env": "^7.17.10",
-    "@babel/preset-typescript": "^7.16.7",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
     "@types/inquirer": "^8.2.1",
     "@types/jest": "^27.5.1",
     "@types/yeoman-assert": "^3.1.1",
