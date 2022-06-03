@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@types/inquirer": "^8.2.1",
-    "@types/jest": "^27.5.2",
+    "@types/jest": "^28.1.0",
     "@types/yeoman-assert": "^3.1.1",
     "@types/yeoman-test": "^4.0.3",
     "@types/yosay": "^2.0.1",
