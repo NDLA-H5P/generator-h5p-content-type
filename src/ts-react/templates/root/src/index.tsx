@@ -1,6 +1,6 @@
-import { H5P<% if (isEditor) { %>Editor<% } %> } from "./h5p/H5P.util";
+<% if (isEditor) { %>import { registerWidget } from "h5p-utils";<% } else { %>import { registerContentType } from "h5p-utils";<% } %>
 import { H5PWrapper } from "./h5p/H5PWrapper";
-import "./styles.css";
 import "./styles.scss";
 
-(H5P<% if (isEditor) { %>Editor<% } %> as any).<%= titlePascalCase %> = H5PWrapper;
+<% if (isEditor) { %>registerWidget("<%= titlePascalCase %>", "<%= titleCamelCase %>", H5PWrapper);<% }
+else { %>registerContentType("<%= titlePascalCase %>", H5PWrapper);<% } %>

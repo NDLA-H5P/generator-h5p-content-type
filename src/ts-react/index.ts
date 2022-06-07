@@ -2,14 +2,17 @@ import type { Answers, Question } from "inquirer";
 import Generator from "yeoman-generator";
 import superb from "superb";
 import { createTitles } from "../_utils/title.utils";
-import fs from 'fs'
-import shelljs from "shelljs";
-
+import { unlinkSync } from "fs";
+import { exec } from "shelljs";
 
 export default class extends Generator {
   private promptAnswers: Answers;
 
-  constructor(args: string | string[], options: Generator.GeneratorOptions, features?: Generator.GeneratorFeatures) {
+  constructor(
+    args: string | string[],
+    options: Generator.GeneratorOptions,
+    features?: Generator.GeneratorFeatures,
+  ) {
     super(args, options, features);
 
     this.option("title", {
@@ -36,7 +39,8 @@ export default class extends Generator {
 
   writing(): void {
     const title: string = this.options.title;
-    const { titlePascalCase, titleKebabCase, titleCamelCase } = createTitles(title);
+    const { titlePascalCase, titleKebabCase, titleCamelCase } =
+      createTitles(title);
 
     const isEditor: boolean = this.options.isEditor;
 
@@ -53,18 +57,26 @@ export default class extends Generator {
         titleCamelCase,
         isEditor,
         useStorybook: this.promptAnswers.useStorybook,
+        hasEditor: this.promptAnswers.hasEditor,
       },
       null,
       {
         globOptions: {
-          ignore: ["**/H5PWrapper.tsx", "**/H5PEditorWrapper.tsx"],
+          ignore: [
+            "**/H5PWrapper.tsx",
+            "**/H5PEditorWrapper.tsx",
+            "**/H5P.utils.ts",
+            "**/node_modules/**/*",
+          ],
           dot: true,
         },
-      }
+      },
     );
 
     this.fs.copyTpl(
-      this.templatePath(`root/src/h5p/${isEditor ? "H5PEditorWrapper" : "H5PWrapper"}.tsx`),
+      this.templatePath(
+        `root/src/h5p/${isEditor ? "H5PEditorWrapper" : "H5PWrapper"}.tsx`,
+      ),
       this.destinationPath("src/h5p/H5PWrapper.tsx"),
       {
         titleKebabCase,
@@ -72,17 +84,19 @@ export default class extends Generator {
       },
     );
 
+    if (isEditor) {
+      this.fs.copyTpl(
+        this.templatePath(`root/src/h5p/H5P.util.ts`),
+        this.destinationPath("src/h5p/H5P.util.ts"),
+        {
+          titlePascalCase,
+        },
+      );
+    }
+
     const useStorybook: boolean = this.promptAnswers.useStorybook;
     if (useStorybook) {
-      this.fs.copy(
-        this.templatePath("storybook/.storybook/**/*"),
-        this.destinationPath(".storybook"),
-      );
-
-      this.fs.copy(
-        this.templatePath("storybook/stories/**/*"),
-        this.destinationPath("src/stories"),
-      );
+      exec("npx sb init --builder @storybook/builder-vite --type react");
     }
   }
 
@@ -90,18 +104,20 @@ export default class extends Generator {
     const title: string = this.options.title;
     const { titleKebabCase } = createTitles(title);
 
-    const library = JSON.parse(this.fs.read(this.destinationPath("library.json")));
+    const library = JSON.parse(
+      this.fs.read(this.destinationPath("library.json")),
+    );
     library.preloadedJs.path = "dist/build.js";
     this.fs.delete(this.destinationPath("library.json"));
     this.fs.writeJSON(this.destinationPath("library.json"), library);
 
-    fs.unlinkSync(this.destinationPath(`src/${titleKebabCase}.js`))
+    unlinkSync(this.destinationPath(`src/${titleKebabCase}.js`));
 
-    if (this.options['skip-install']) {
+    if (this.options["skip-install"]) {
       this.log(`To install your dependencies manually, run: "npm install"`);
     } else {
       this.log("installing dependencies");
-      shelljs.exec('npm install');
+      exec("npm install");
     }
   }
 }

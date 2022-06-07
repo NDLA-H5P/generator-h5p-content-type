@@ -1,24 +1,12 @@
+import type { H5PFieldText, IH5PWidget } from "h5p-types";
+import { H5PWidget } from "h5p-utils";
 import * as React from "react";
-import type { IH5PWidget } from "h5p-types";
-import * as ReactDOM from "react-dom";
-import App from "../App";
-import { H5P } from "./H5P.util";
+import { createRoot } from "react-dom/client";
+import { App } from "../App";
 
-export class H5PWrapper extends H5P.EventDispatcher implements IH5PWidget {
-  private wrapper: HTMLElement;
+type Field = H5PFieldText;
 
-  constructor(
-    parent: JQuery<HTMLElement>,
-    field: unknown,
-    params: unknown,
-    setValue: (value: unknown) => void
-  ) {
-    super();
-    this.wrapper = H5PWrapper.createWrapperElement();
-
-    ReactDOM.render(<App adjective="<%= superb %>" />, this.wrapper);
-  }
-
+export class H5PWrapper extends H5PWidget<Field> implements IH5PWidget {
   appendTo($container: JQuery<HTMLElement>): void {
     const containerElement = $container.get(0);
     if (!containerElement) {
@@ -28,8 +16,13 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWidget {
       return;
     }
 
+    const adjective = this.params ?? "<%= superb %>";
+
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-<%= titleKebabCase %>");
+
+    const root = createRoot(this.wrapper);
+    root.render(<App adjective={adjective} />);
   }
 
   validate(): boolean {
@@ -37,8 +30,4 @@ export class H5PWrapper extends H5P.EventDispatcher implements IH5PWidget {
   }
 
   remove(): void {}
-
-  private static createWrapperElement(): HTMLDivElement {
-    return document.createElement("div");
-  }
 }
