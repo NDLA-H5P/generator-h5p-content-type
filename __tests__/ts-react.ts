@@ -1,4 +1,5 @@
 import path from "path";
+import { describe, it } from "vitest";
 import assert from "yeoman-assert";
 import helpers from "yeoman-test";
 import { generatorName } from "../src/_utils/vars";
