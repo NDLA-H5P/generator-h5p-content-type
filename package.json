@@ -3,18 +3,26 @@
   "version": "0.0.0",
   "description": "",
   "homepage": "",
-  "author": {
-    "name": " ",
-    "email": " ",
-    "url": " "
-  },
   "files": [
     "generators"
   ],
   "main": "generators/app/index.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "h5p"
   ],
+  "scripts": {
+    "clean-output": "npx rimraf generators",
+    "build-typescript": "tsc",
+    "copy-templates": "cpy . ../generators/. --dot --cwd=src",
+    "build": "npm run clean-output && npm run build-typescript && npm run copy-templates",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pretest": "npm run lint:fix",
+    "test": "jest",
+    "generate-local": "npm run build && rimraf temp && mkdir temp && cd temp && yo ..",
+    "publish-to-npm": "np"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
@@ -31,6 +39,7 @@
     "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^28.1.0",
+    "np": "^7.6.1",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^28.0.4",
@@ -52,17 +61,6 @@
   },
   "peerDependencies": {
     "yo": "^4.3.0"
-  },
-  "scripts": {
-    "clean-output": "npx rimraf generators",
-    "build-typescript": "tsc",
-    "copy-templates": "cpy . ../generators/. --dot --cwd=src",
-    "build": "npm run clean-output && npm run build-typescript && npm run copy-templates",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "pretest": "npm run lint:fix",
-    "test": "jest",
-    "generate-local": "npm run build && rimraf temp && mkdir temp && cd temp && yo .."
   },
   "repository": "https://github.com/NDLA-H5P/generator-h5p-content-type",
   "license": "MIT"
