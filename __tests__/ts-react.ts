@@ -56,22 +56,22 @@ describe(`generator-${generatorName}:${generator}`, () => {
     assert.noFile(["./src/widget.js"]);
   });
 
-  // it("installs Storybook", async () => {
-  //   await helpers
-  //     .run(directory)
-  //     .withOptions({
-  //       title: "Content Type",
-  //       isEditor: false,
-  //     })
-  //     .withPrompts({
-  //       useStorybook: true,
-  //     });
+  it("installs Storybook", async () => {
+    await helpers
+      .run(directory)
+      .withOptions({
+        title: "Content Type",
+        isEditor: false,
+      })
+      .withPrompts({
+        useStorybook: true,
+      });
 
-  //   // The files can be added all in the same
-  //   // `assert.file([])` call, but this makes the
-  //   // test fail only once, thus telling nothing
-  //   // about what files are missing.
+    // The files can be added all in the same
+    // `assert.file([])` call, but this makes the
+    // test fail only once, thus telling nothing
+    // about what files are missing.
 
-  //   assert.file([".storybook/main.js"]);
-  // });
+    assert.file([".storybook/main.js"]);
+  }, 120_000);
 });
