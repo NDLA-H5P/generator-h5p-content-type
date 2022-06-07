@@ -4,10 +4,10 @@ const config: Config.InitialOptions = {
   testEnvironment: "node",
   transform: {
     ".(js|jsx)": "babel-jest",
-    ".(ts|tsx)": "ts-jest"
+    ".(ts|tsx)": "ts-jest",
   },
-  testPathIgnorePatterns: ["generators/", "templates/"],
-  modulePathIgnorePatterns: ["generators/", "templates/"]
+  testPathIgnorePatterns: ["generators/", "templates/", "temp/"],
+  modulePathIgnorePatterns: ["generators/", "templates/", "temp/"],
 };
 
 export default config;
