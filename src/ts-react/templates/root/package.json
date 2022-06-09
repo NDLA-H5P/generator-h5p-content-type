@@ -41,7 +41,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "h5p-generate-configs": "^0.2.0",
+    "h5p-generate-configs": "^0.3.0",
     "h5p-types": "^0.0.23",
     "prettier": "^2.6.2",
     "sass": "^1.52.2",
