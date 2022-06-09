@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "h5p-generate-configs": "^0.3.0",
-    "h5p-types": "^0.0.23",
+    "h5p-types": "^0.1.0",
     "prettier": "^2.6.2",
     "sass": "^1.52.2",
     "ts-node": "^10.8.1",
