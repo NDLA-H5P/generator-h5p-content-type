@@ -5,7 +5,7 @@ import yosay from "yosay";
 export default class extends Generator {
   private promptAnswers: Answers;
 
-  constructor(args, options, features){
+  constructor(args, options){
     options['skip-install'] = false;
     super(args, options, {customInstallTask: false});
   }
