@@ -54,7 +54,7 @@
     "npm": ">= 4.0.0"
   },
   "dependencies": {
-    "chalk": "^5.2.0",
+    "chalk": "^5.3.0",
     "change-case": "^4.1.2",
     "superb": "^4.0.0",
     "yeoman-generator": "^5.9.0",
